@@ -19,15 +19,19 @@
             android:textAppearance="@style/TextAppearance.AppCompat.Title"
             android:textColor="@color/primary_text"
             android:textSize="@dimen/sn_16sp"
-            android:layout_marginBottom="8dp"
             android:padding="4dp"
             android:singleLine="true"/>
 
-        <ImageView
-            android:id="@+id/ivImage"
+        <TextView
+            android:id="@+id/tvContent"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:scaleType="centerCrop"/>
+            android:textAppearance="@style/TextAppearance.AppCompat.Title"
+            android:textColor="@color/primary_text"
+            android:textSize="@dimen/sn_16sp"
+            android:padding="4dp"
+            android:singleLine="true"/>
+
 
     </LinearLayout>
 

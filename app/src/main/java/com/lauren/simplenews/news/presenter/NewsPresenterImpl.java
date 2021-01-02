@@ -11,13 +11,7 @@ import com.lauren.simplenews.utils.LogUtils;
 
 import java.util.List;
 
-/**
- * Description :
- * Author : lauren
- * Email  : lauren.liuling@gmail.com
- * Blog   : http://www.liuling123.com
- * Date   : 15/12/18
- */
+
 public class NewsPresenterImpl implements NewsPresenter, OnLoadNewsListListener {
 
     private static final String TAG = "NewsPresenterImpl";
@@ -51,22 +45,23 @@ public class NewsPresenterImpl implements NewsPresenter, OnLoadNewsListListener 
         StringBuffer sb = new StringBuffer();
         switch (type) {
             case NewsFragment.NEWS_TYPE_TOP:
-                sb.append(Urls.TOP_URL).append(Urls.TOP_ID);
+                sb.append(Urls.TOUTIAO);
+
                 break;
-            case NewsFragment.NEWS_TYPE_NBA:
-                sb.append(Urls.COMMON_URL).append(Urls.NBA_ID);
+            case NewsFragment.NEWS_TYPE_TIYU:
+                sb.append(Urls.TIYU);
                 break;
-            case NewsFragment.NEWS_TYPE_CARS:
-                sb.append(Urls.COMMON_URL).append(Urls.CAR_ID);
+            case NewsFragment.NEWS_TYPE_YULE:
+                sb.append(Urls.YULE);
                 break;
-            case NewsFragment.NEWS_TYPE_JOKES:
-                sb.append(Urls.COMMON_URL).append(Urls.JOKE_ID);
+            case NewsFragment.NEWS_TYPE_CAIJING:
+                sb.append(Urls.CAIJING);
                 break;
             default:
                 sb.append(Urls.TOP_URL).append(Urls.TOP_ID);
                 break;
         }
-        sb.append("/").append(pageIndex).append(Urls.END_URL);
+//        sb.append("/").append(pageIndex).append(Urls.END_URL);
         return sb.toString();
     }
 

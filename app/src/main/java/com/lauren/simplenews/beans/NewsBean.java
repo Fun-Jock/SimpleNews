@@ -2,50 +2,54 @@ package com.lauren.simplenews.beans;
 
 import java.io.Serializable;
 
-/**
- * Description : 新闻实体类
- * Author : lauren
- * Email  : lauren.liuling@gmail.com
- * Blog   : http://www.liuling123.com
- * Date   : 15/12/19
- */
+
 public class NewsBean implements Serializable {
 
     /**
-     * docid
+     * uniquekey
      */
-    private String docid;
+    private String uniquekey;
     /**
      * 标题
      */
     private String title;
-    /**
-     * 小内容
-     */
-    private String digest;
-    /**
-     * 图片地址
-     */
-    private String imgsrc;
-    /**
-     * 来源
-     */
-    private String source;
+
     /**
      * 时间
      */
-    private String ptime;
+    private String date;
+
+    /**
+     * 来源
+     */
+    private String category;
+    /**
+     * 小内容
+     */
+    private String author_name;
+
+    /*
+    * 详情地址
+    * */
+    private String url;
+
+    /**
+     * 图片地址
+     */
+    private String thumbnail_pic_s;
+
+
     /**
      * TAG
      */
     private String tag;
 
-    public String getDocid() {
-        return docid;
+    public String getUniquekey() {
+        return uniquekey;
     }
 
-    public void setDocid(String docid) {
-        this.docid = docid;
+    public void setUniquekey(String uniquekey) {
+        this.uniquekey = uniquekey;
     }
 
     public String getTitle() {
@@ -56,36 +60,52 @@ public class NewsBean implements Serializable {
         this.title = title;
     }
 
-    public String getDigest() {
-        return digest;
+//    public String getDigest() {
+//        return digest;
+//    }
+//
+//    public void setDigest(String digest) {
+//        this.digest = digest;
+//    }
+
+    public String getAuthor_name() {
+        return author_name;
     }
 
-    public void setDigest(String digest) {
-        this.digest = digest;
+    public void setAuthor_name(String author_name) {
+        this.author_name = author_name;
     }
 
-    public String getImgsrc() {
-        return imgsrc;
+    public String getUrl() {
+        return url;
     }
 
-    public void setImgsrc(String imgsrc) {
-        this.imgsrc = imgsrc;
+    public void setUrl(String url) {
+        this.url = url;
     }
 
-    public String getSource() {
-        return source;
+    public String getThumbnail_pic_s() {
+        return thumbnail_pic_s;
     }
 
-    public void setSource(String source) {
-        this.source = source;
+    public void setThumbnail_pic_s(String thumbnail_pic_s) {
+        this.thumbnail_pic_s = thumbnail_pic_s;
     }
 
-    public String getPtime() {
-        return ptime;
+    public String getCategory() {
+        return category;
     }
 
-    public void setPtime(String ptime) {
-        this.ptime = ptime;
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
     }
 
     public String getTag() {

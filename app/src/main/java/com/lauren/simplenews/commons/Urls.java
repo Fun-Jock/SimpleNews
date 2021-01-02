@@ -1,15 +1,17 @@
 package com.lauren.simplenews.commons;
 
-/**
- * Description : 接口API的URL
- * Author : lauren
- * Email  : lauren.liuling@gmail.com
- * Blog   : http://www.liuling123.com
- * Date   : 15/12/13
- */
+
 public class Urls {
 
     //http://c.m.163.com/nc/article/headline/T1348647909107/0-5.html  头条
+
+    public static final String TOUTIAO = "http://v.juhe.cn/toutiao/index?type=top&key=c0a97b472c428576e9fcafaa6b2a41fa";
+
+    public static final String TIYU = "http://v.juhe.cn/toutiao/index?type=tiyu&key=c0a97b472c428576e9fcafaa6b2a41fa";
+
+    public static final String CAIJING = "http://v.juhe.cn/toutiao/index?type=caijing&key=c0a97b472c428576e9fcafaa6b2a41fa";
+
+    public static final String YULE = "http://v.juhe.cn/toutiao/index?type=yule&key=c0a97b472c428576e9fcafaa6b2a41fa";
 
     public static final int PAZE_SIZE = 20;
 
@@ -25,14 +27,20 @@ public class Urls {
     public static final String COMMON_URL = HOST + "nc/article/list/";
 
     // 汽车
-    public static final String CAR_ID = "T1348654060988";
+//    public static final String CAR_ID = "T1348654060988";
+
+
+    // 汽车
+    public static final String MOVIE_ID = "T1348648650048";
     // 笑话
     public static final String JOKE_ID = "T1350383429665";
     // nba
     public static final String NBA_ID = "T1348649145984";
 
     // 图片
-    public static final String IMAGES_URL = "http://api.laifudao.com/open/tupian.json";
+//    public static final String IMAGES_URL = "http://api.laifudao.com/open/tupian.json";
+    // 节假日安排
+//    public static final String HOLIDAY_URL = "http://v.juhe.cn/calendar/year?year=2020&key=524d49c165c6450fda8f90057c3c1497";
 
     // 天气预报url
     public static final String WEATHER = "http://wthrcdn.etouch.cn/weather_mini?city=";

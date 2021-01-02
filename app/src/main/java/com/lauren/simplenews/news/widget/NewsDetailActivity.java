@@ -20,13 +20,7 @@ import org.sufficientlysecure.htmltextview.HtmlTextView;
 import me.imid.swipebacklayout.lib.SwipeBackLayout;
 import me.imid.swipebacklayout.lib.app.SwipeBackActivity;
 
-/**
- * Description : 新闻详情界面
- * Author : lauren
- * Email  : lauren.liuling@gmail.com
- * Blog   : http://www.liuling123.com
- * Date   : 15/12/19
- */
+
 public class NewsDetailActivity extends SwipeBackActivity implements NewsDetailView {
 
     private NewsBean mNews;
@@ -61,10 +55,10 @@ public class NewsDetailActivity extends SwipeBackActivity implements NewsDetailV
         CollapsingToolbarLayout collapsingToolbar = (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);
         collapsingToolbar.setTitle(mNews.getTitle());
 
-        ImageLoaderUtils.display(getApplicationContext(), (ImageView) findViewById(R.id.ivImage), mNews.getImgsrc());
+        ImageLoaderUtils.display(getApplicationContext(), (ImageView) findViewById(R.id.ivImage), mNews.getThumbnail_pic_s());
 
         mNewsDetailPresenter = new NewsDetailPresenterImpl(getApplication(), this);
-        mNewsDetailPresenter.loadNewsDetail(mNews.getDocid());
+        mNewsDetailPresenter.loadNewsDetail(mNews.getUrl());
     }
 
     @Override

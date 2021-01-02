@@ -28,6 +28,7 @@
         app:border_width="2dp" />
 
     <TextView
+        android:id="@+id/profile_uname"
         android:layout_marginTop="10dp"
         android:textSize="18sp"
         android:layout_width="match_parent"

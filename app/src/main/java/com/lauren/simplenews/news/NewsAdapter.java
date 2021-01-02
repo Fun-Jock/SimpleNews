@@ -14,13 +14,7 @@ import com.lauren.simplenews.utils.ImageLoaderUtils;
 
 import java.util.List;
 
-/**
- * Description :
- * Author : lauren
- * Email  : lauren.liuling@gmail.com
- * Blog   : http://www.liuling123.com
- * Date   : 15/12/19
- */
+
 public class NewsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private static final int TYPE_ITEM = 0;
     private static final int TYPE_FOOTER = 1;
@@ -79,10 +73,13 @@ public class NewsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                 return;
             }
             ((ItemViewHolder) holder).mTitle.setText(news.getTitle());
-            ((ItemViewHolder) holder).mDesc.setText(news.getDigest());
-//            Uri uri = Uri.parse(news.getImgsrc());
+            ((ItemViewHolder) holder).mDesc.setText(news.getCategory());
+
+            ((ItemViewHolder) holder).mAuthor.setText(news.getAuthor_name());
+            ((ItemViewHolder) holder).mDate.setText(news.getDate());
+//            Uri uri = Uri.parse(news.getThumbnail_pic_s());
 //            ((ItemViewHolder) holder).mNewsImg.setImageURI(uri);
-            ImageLoaderUtils.display(mContext, ((ItemViewHolder) holder).mNewsImg, news.getImgsrc());
+            ImageLoaderUtils.display(mContext, ((ItemViewHolder) holder).mNewsImg, news.getThumbnail_pic_s());
         }
     }
 
@@ -127,6 +124,8 @@ public class NewsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
         public TextView mTitle;
         public TextView mDesc;
+        public TextView mAuthor;
+        public TextView mDate;
         public ImageView mNewsImg;
 
         public ItemViewHolder(View v) {
@@ -134,6 +133,8 @@ public class NewsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             mTitle = (TextView) v.findViewById(R.id.tvTitle);
             mDesc = (TextView) v.findViewById(R.id.tvDesc);
             mNewsImg = (ImageView) v.findViewById(R.id.ivNews);
+            mAuthor = (TextView) v.findViewById(R.id.tv_author);
+            mDate = (TextView) v.findViewById(R.id.tvDate);
             v.setOnClickListener(this);
         }
 

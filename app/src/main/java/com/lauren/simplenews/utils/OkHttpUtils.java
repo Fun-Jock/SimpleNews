@@ -2,6 +2,7 @@ package com.lauren.simplenews.utils;
 
 import android.os.Handler;
 import android.os.Looper;
+import android.util.Log;
 
 import com.google.gson.internal.$Gson$Types;
 import com.squareup.okhttp.Callback;
@@ -19,13 +20,7 @@ import java.net.CookiePolicy;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-/**
- * Description : OkHttp网络连接封装工具类
- * Author : lauren
- * Email  : lauren.liuling@gmail.com
- * Blog   : http://www.liuling123.com
- * Date   : 15/12/17
- */
+
 public class OkHttpUtils {
 
     private static final String TAG = "OkHttpUtils";
@@ -53,6 +48,7 @@ public class OkHttpUtils {
 
     private void getRequest(String url, final ResultCallback callback) {
         final Request request = new Request.Builder().url(url).build();
+        Log.e("QQQ", "getRequest");
         deliveryResult(callback, request);
     }
 
@@ -66,6 +62,7 @@ public class OkHttpUtils {
         mOkHttpClient.newCall(request).enqueue(new Callback() {
             @Override
             public void onFailure(Request request, final IOException e) {
+                Log.e("QQQ", e.getMessage());
                 sendFailCallback(callback, e);
             }
 
@@ -73,6 +70,7 @@ public class OkHttpUtils {
             public void onResponse(Response response) throws IOException {
                 try {
                     String str = response.body().string();
+                    Log.e("QQQ", str);
                     if (callback.mType == String.class) {
                         sendSuccessCallBack(callback, str);
                     } else {

@@ -18,13 +18,7 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.List;
 
-/**
- * Description :
- * Author : lauren
- * Email  : lauren.liuling@gmail.com
- * Blog   : http://www.liuling123.com
- * Date   : 2015/12/22
- */
+
 public class WeatherModelImpl implements WeatherModel {
 
     private static final String TAG = "WeatherModelImpl";
@@ -32,7 +26,8 @@ public class WeatherModelImpl implements WeatherModel {
     @Override
     public void loadWeatherData(String cityName, final LoadWeatherListener listener) {
         try {
-            String url = Urls.WEATHER + URLEncoder.encode(cityName, "utf-8");
+            String url = Urls.WEATHER + URLEncoder.encode(cityName, "utf-8");  //调用接口，
+            // 根据城市名称去获取天气信息
             OkHttpUtils.ResultCallback<String> callback = new OkHttpUtils.ResultCallback<String>() {
                 @Override
                 public void onSuccess(String response) {
@@ -72,6 +67,7 @@ public class WeatherModelImpl implements WeatherModel {
         double longitude = location.getLongitude(); //纬度
         String url = getLocationURL(latitude, longitude);
         OkHttpUtils.ResultCallback<String> callback = new OkHttpUtils.ResultCallback<String>() {
+            //callback异步的方法调用，需要用户自己进行解析
             @Override
             public void onSuccess(String response) {
                 String city = WeatherJsonUtils.getCity(response);
@@ -92,7 +88,7 @@ public class WeatherModelImpl implements WeatherModel {
         OkHttpUtils.get(url, callback);
     }
 
-    private String getLocationURL(double latitude, double longitude) {
+    private String getLocationURL(double latitude, double longitude) {  //根据URL地址获取位置信息
         StringBuffer sb = new StringBuffer(Urls.INTERFACE_LOCATION);
         sb.append("?output=json").append("&referer=32D45CBEEC107315C553AD1131915D366EEF79B4");
         sb.append("&location=").append(latitude).append(",").append(longitude);

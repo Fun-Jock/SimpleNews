@@ -4,13 +4,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,18 +26,12 @@ import com.lauren.simplenews.utils.LogUtils;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Description : 新闻Fragment
- * Author : lauren
- * Email  : lauren.liuling@gmail.com
- * Blog   : http://www.liuling123.com
- * Date   : 15/12/13
- */
+
 public class NewsListFragment extends Fragment implements NewsView, SwipeRefreshLayout.OnRefreshListener {
 
     private static final String TAG = "NewsListFragment";
 
-    private SwipeRefreshLayout mSwipeRefreshWidget;
+//    private SwipeRefreshLayout mSwipeRefreshWidget;
     private RecyclerView mRecyclerView;
     private LinearLayoutManager mLayoutManager;
     private NewsAdapter mAdapter;
@@ -68,11 +61,11 @@ public class NewsListFragment extends Fragment implements NewsView, SwipeRefresh
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_newslist, null);
 
-        mSwipeRefreshWidget = (SwipeRefreshLayout) view.findViewById(R.id.swipe_refresh_widget);
-        mSwipeRefreshWidget.setColorSchemeResources(R.color.primary,
-                R.color.primary_dark, R.color.primary_light,
-                R.color.accent);
-        mSwipeRefreshWidget.setOnRefreshListener(this);
+//        mSwipeRefreshWidget = (SwipeRefreshLayout) view.findViewById(R.id.swipe_refresh_widget);
+//        mSwipeRefreshWidget.setColorSchemeResources(R.color.primary,
+//                R.color.primary_dark, R.color.primary_light,
+//                R.color.accent);
+//        mSwipeRefreshWidget.setOnRefreshListener(this);
 
         mRecyclerView = (RecyclerView)view.findViewById(R.id.recycle_view);
         mRecyclerView.setHasFixedSize(true);
@@ -96,14 +89,23 @@ public class NewsListFragment extends Fragment implements NewsView, SwipeRefresh
         @Override
         public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
             super.onScrolled(recyclerView, dx, dy);
+            LogUtils.d(TAG, "onScrolled");
             lastVisibleItem = mLayoutManager.findLastVisibleItemPosition();
+            LogUtils.d(TAG, "lastVisibleItem = " + lastVisibleItem);
+            LogUtils.d(TAG, "mLayoutManager.getItemCount() = " + mLayoutManager.getItemCount());
+            if(lastVisibleItem == mLayoutManager.getItemCount() - 1) {
+                LogUtils.d(TAG, "loading more data");
+                mNewsPresenter.loadNews(mType, pageIndex + Urls.PAZE_SIZE);
+            }
         }
 
         @Override
         public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
             super.onScrollStateChanged(recyclerView, newState);
+            lastVisibleItem = mLayoutManager.findLastVisibleItemPosition();
+            LogUtils.d(TAG, "onScrollStateChanged");
             if (newState == RecyclerView.SCROLL_STATE_IDLE
-                    && lastVisibleItem + 1 == mAdapter.getItemCount()
+                    && lastVisibleItem + 1 == 9
                     && mAdapter.isShowFooter()) {
                 //加载更多
                 LogUtils.d(TAG, "loading more data");
@@ -119,21 +121,28 @@ public class NewsListFragment extends Fragment implements NewsView, SwipeRefresh
                 return;
             }
             NewsBean news = mAdapter.getItem(position);
-            Intent intent = new Intent(getActivity(), NewsDetailActivity.class);
-            intent.putExtra("news", news);
+            Log.e("QQQ", news.getUrl());
+            Log.e("QQQ", news.getTitle());
+            Intent intent = new Intent(getActivity(), AdViewerActivity.class);
+            intent.putExtra("uri", news.getUrl());
+            intent.putExtra("title", news.getTitle());
+            startActivity(intent);
 
-            View transitionView = view.findViewById(R.id.ivNews);
-            ActivityOptionsCompat options =
-                    ActivityOptionsCompat.makeSceneTransitionAnimation(getActivity(),
-                            transitionView, getString(R.string.transition_news_img));
-
-            ActivityCompat.startActivity(getActivity(), intent, options.toBundle());
+//            Intent intent = new Intent(getActivity(), NewsDetailActivity.class);
+//            intent.putExtra("news", news);
+//
+//            View transitionView = view.findViewById(R.id.ivNews);
+//            ActivityOptionsCompat options =
+//                    ActivityOptionsCompat.makeSceneTransitionAnimation(getActivity(),
+//                            transitionView, getString(R.string.transition_news_img));
+//
+//            ActivityCompat.startActivity(getActivity(), intent, options.toBundle());
         }
     };
 
     @Override
     public void showProgress() {
-        mSwipeRefreshWidget.setRefreshing(true);
+//        mSwipeRefreshWidget.setRefreshing(true);
     }
 
     @Override
@@ -158,7 +167,7 @@ public class NewsListFragment extends Fragment implements NewsView, SwipeRefresh
 
     @Override
     public void hideProgress() {
-        mSwipeRefreshWidget.setRefreshing(false);
+//        mSwipeRefreshWidget.setRefreshing(false);
     }
 
     @Override

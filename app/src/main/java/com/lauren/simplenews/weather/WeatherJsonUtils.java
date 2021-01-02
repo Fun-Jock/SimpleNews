@@ -12,13 +12,7 @@ import com.lauren.simplenews.beans.WeatherBean;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Description :
- * Author : lauren
- * Email  : lauren.liuling@gmail.com
- * Blog   : http://www.liuling123.com
- * Date   : 2015/12/22
- */
+
 public class WeatherJsonUtils {
 
     /**
@@ -50,7 +44,8 @@ public class WeatherJsonUtils {
      * @param json
      * @return
      */
-    public static List<WeatherBean> getWeatherInfo(String json) {
+    public static List<WeatherBean> getWeatherInfo(String json) {//定义一个WeatherBean将从接口获得的数据
+        //解析，然后放到list中
         List<WeatherBean> list = new ArrayList<WeatherBean>();
         if (TextUtils.isEmpty(json)) {
             return list;
@@ -60,11 +55,11 @@ public class WeatherJsonUtils {
         String status = jsonObj.get("status").getAsString();
         if("1000".equals(status)) {
             JsonArray jsonArray = jsonObj.getAsJsonObject("data").getAsJsonArray("forecast");
-            for (int i = 0; i < jsonArray.size(); i++) {
-                WeatherBean weatherBean = getWeatherBeanFromJson(jsonArray.get(i).getAsJsonObject());
-                list.add(weatherBean);
-            }
+        for (int i = 0; i < jsonArray.size(); i++) {
+            WeatherBean weatherBean = getWeatherBeanFromJson(jsonArray.get(i).getAsJsonObject());
+            list.add(weatherBean);
         }
+    }
         return list;
     }
 

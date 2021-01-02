@@ -2,14 +2,9 @@ package com.lauren.simplenews.news.model;
 
 import com.lauren.simplenews.beans.NewsDetailBean;
 
-/**
- * Description : 新闻详情加载回调
- * Author : AstroGypsophila
- * Github  : https://github.com/AstroGypsophila
- * Date   : 2016/8/28
- */
-public interface OnLoadNewsDetailListener {
 
+public interface OnLoadNewsDetailListener {
+//加载新闻具体信息的事件监听
     void onSuccess(NewsDetailBean newsDetailBean);
 
     void onFailure(String msg, Exception e);

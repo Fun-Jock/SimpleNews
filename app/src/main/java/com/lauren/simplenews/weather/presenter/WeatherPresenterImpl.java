@@ -10,13 +10,7 @@ import com.lauren.simplenews.weather.view.WeatherView;
 
 import java.util.List;
 
-/**
- * Description :
- * Author : lauren
- * Email  : lauren.liuling@gmail.com
- * Blog   : http://www.liuling123.com
- * Date   : 2015/12/22
- */
+
 public class WeatherPresenterImpl implements WeatherPresenter, WeatherModelImpl.LoadWeatherListener {
 
     private WeatherView mWeatherView;
@@ -42,7 +36,7 @@ public class WeatherPresenterImpl implements WeatherPresenter, WeatherModelImpl.
             @Override
             public void onSuccess(String cityName) {
                 //定位成功，获取定位城市天气预报
-                mWeatherView.setCity(cityName);
+                mWeatherView.setCity(cityName);  //先展示城市名称，然后再拿城市名去获取信息
                 mWeatherModel.loadWeatherData(cityName, WeatherPresenterImpl.this);
             }
 
@@ -58,7 +52,9 @@ public class WeatherPresenterImpl implements WeatherPresenter, WeatherModelImpl.
     }
 
     @Override
-    public void onSuccess(List<WeatherBean> list) {
+    public void onSuccess(List<WeatherBean> list) { //实现回调功能，
+        // 将在WeatherModeImpl获取的List进行回调到view中进行展示
+
         if(list != null && list.size() > 0) {
             WeatherBean todayWeather = list.remove(0);
             mWeatherView.setToday(todayWeather.getDate());
